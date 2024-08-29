@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1C06C980-2D44-425C-98A4-C111657B511E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "strategy", "strategy", "{753770A2-11B5-4E8E-92C0-DCF89878BE4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniDuckSimulator", "src\strategy\MiniDuckSimulator\MiniDuckSimulator.csproj", "{1AE8E236-1929-4692-A547-F181DDCE4BB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -10,5 +16,15 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1AE8E236-1929-4692-A547-F181DDCE4BB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AE8E236-1929-4692-A547-F181DDCE4BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AE8E236-1929-4692-A547-F181DDCE4BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AE8E236-1929-4692-A547-F181DDCE4BB6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{753770A2-11B5-4E8E-92C0-DCF89878BE4B} = {1C06C980-2D44-425C-98A4-C111657B511E}
+		{1AE8E236-1929-4692-A547-F181DDCE4BB6} = {753770A2-11B5-4E8E-92C0-DCF89878BE4B}
 	EndGlobalSection
 EndGlobal
