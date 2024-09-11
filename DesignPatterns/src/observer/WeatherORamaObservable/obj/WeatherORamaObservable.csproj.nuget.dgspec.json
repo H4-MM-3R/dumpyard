@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/hemram/headFirst/designPatterns/src/observer/WeatherORamaObservable/WeatherORamaObservable.csproj": {}
+    "/home/hemram/git-repos/dumpyard/DesignPatterns/src/observer/WeatherORamaObservable/WeatherORamaObservable.csproj": {}
   },
   "projects": {
-    "/home/hemram/headFirst/designPatterns/src/observer/WeatherORamaObservable/WeatherORamaObservable.csproj": {
+    "/home/hemram/git-repos/dumpyard/DesignPatterns/src/observer/WeatherORamaObservable/WeatherORamaObservable.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/hemram/headFirst/designPatterns/src/observer/WeatherORamaObservable/WeatherORamaObservable.csproj",
+        "projectUniqueName": "/home/hemram/git-repos/dumpyard/DesignPatterns/src/observer/WeatherORamaObservable/WeatherORamaObservable.csproj",
         "projectName": "WeatherORamaObservable",
-        "projectPath": "/home/hemram/headFirst/designPatterns/src/observer/WeatherORamaObservable/WeatherORamaObservable.csproj",
+        "projectPath": "/home/hemram/git-repos/dumpyard/DesignPatterns/src/observer/WeatherORamaObservable/WeatherORamaObservable.csproj",
         "packagesPath": "/home/hemram/.nuget/packages/",
-        "outputPath": "/home/hemram/headFirst/designPatterns/src/observer/WeatherORamaObservable/obj/",
+        "outputPath": "/home/hemram/git-repos/dumpyard/DesignPatterns/src/observer/WeatherORamaObservable/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/hemram/.nuget/NuGet/NuGet.Config"

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WeatherORamaObservable")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e15ec2d02e00cce3b17dd5d51730e2626c82dad9")]
 [assembly: System.Reflection.AssemblyProductAttribute("WeatherORamaObservable")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WeatherORamaObservable")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
