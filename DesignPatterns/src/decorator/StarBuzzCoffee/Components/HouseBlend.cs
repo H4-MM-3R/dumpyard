@@ -9,8 +9,15 @@ public class HouseBlend : Beverage
         Description = "House Blend";
     }
 
-    public override double Price()
+    public override decimal Price()
     {
-        return .89;
+        switch (size)
+        {
+            case Size.Grande:
+                return 1.89m;
+            case Size.Venti:
+                return 2.89m;
+        }
+        return .89m;
     }
 }

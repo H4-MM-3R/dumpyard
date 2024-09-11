@@ -14,8 +14,14 @@ public class Soy : Condiment
 
     public override string Description => _beverage.Description + ", Soy";
 
-    public override double Price()
+    public override decimal Price()
     {
-        return _beverage.Price() + 0.5;
+        return _beverage.Price()
+            + _beverage.size switch
+            {
+                Size.Grande => 0.50m,
+                Size.Venti => 0.75m,
+                _ => 0.25m
+            };
     }
 }

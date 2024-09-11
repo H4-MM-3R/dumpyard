@@ -12,12 +12,14 @@ internal class Program
         Console.WriteLine($"{beverage.Description} ${beverage.Price()}");
 
         Beverage beverage2 = new DarkRoast();
+        beverage2.size = Size.Grande;
         beverage2 = new Mocha(beverage2);
         beverage2 = new Mocha(beverage2);
         beverage2 = new Whip(beverage2);
         Console.WriteLine($"{beverage2.Description} ${beverage2.Price()}");
 
         Beverage beverage3 = new HouseBlend();
+        beverage3.size = Size.Venti;
         beverage3 = new Soy(beverage3);
         beverage3 = new Mocha(beverage3);
         beverage3 = new Whip(beverage3);

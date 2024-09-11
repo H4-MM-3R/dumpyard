@@ -14,8 +14,14 @@ public class Mocha : Condiment
 
     public override string Description => _beverage.Description + ", Mocha";
 
-    public override double Price()
+    public override decimal Price()
     {
-       return .15 + _beverage.Price();
+        return _beverage.Price()
+            + _beverage.size switch
+            {
+                Size.Grande => 0.30m,
+                Size.Venti => 0.45m,
+                _ => 0.15m
+            };
     }
 }

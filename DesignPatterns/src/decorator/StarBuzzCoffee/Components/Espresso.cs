@@ -9,8 +9,15 @@ public class Espresso : Beverage
         Description = "Espresso";
     }
 
-    public override double Price()
+    public override decimal Price()
     {
-        return 1.99;
+        switch (size)
+        {
+            case Size.Grande:
+                return 2.99m;
+            case Size.Venti:
+                return 3.99m;
+        }
+        return 1.99m;
     }
 }

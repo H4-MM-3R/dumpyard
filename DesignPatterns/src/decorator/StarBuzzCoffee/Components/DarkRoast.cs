@@ -9,8 +9,15 @@ public class DarkRoast : Beverage
         Description = "Dark Roast";
     }
 
-    public override double Price()
+    public override decimal Price()
     {
-       return .99; 
+        switch (size)
+        {
+            case Size.Grande:
+                return 1.99m;
+            case Size.Venti:
+                return 2.99m;
+        }
+       return .99m; 
     }
 }
