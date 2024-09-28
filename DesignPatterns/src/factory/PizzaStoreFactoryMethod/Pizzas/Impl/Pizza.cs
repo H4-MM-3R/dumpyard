@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace PizzaStoreSimpleFactory.Pizzas.Impl;
+namespace PizzaStoreFactoryMethod.Pizzas.Impl;
 
 public abstract class Pizza
 {
