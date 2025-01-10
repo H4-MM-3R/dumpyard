@@ -1,16 +1,30 @@
 #include <algorithm>
 #include <climits>
 #include <iostream>
+#include <map>
 #include <unordered_set>
 #include <utility>
 #include <vector>
 
-
 using namespace std;
 
-void ap(vector<int> arr) {
+void arr_printer(vector<int> arr) {
   for (int i = 0; i < arr.size(); i++) {
     cout << arr[i] << " ";
+  }
+  cout << endl;
+}
+
+void mat_printer(vector<vector<int>> arr) {
+  for (int i = 0; i < arr.size(); i++) {
+    for (int j = 0; j < arr[0].size(); j++) {
+      cout << arr[i][j];
+      if (j != arr[0].size() - 1)
+        cout << " | ";
+      else
+        cout << endl;
+    }
+    cout << "---------" << endl;
   }
   cout << endl;
 }
@@ -202,141 +216,310 @@ vector<int> solve6(vector<int> &arr) {
 }
 vector<int> solve6b(vector<int> &arr) {
   // variation: if no of negative and positive elements are unequal
-    vector<int> pos;
-    vector<int> neg;
+  vector<int> pos;
+  vector<int> neg;
 
-    for(int ele : arr){
-        if(ele < 0) neg.push_back(ele);
-        else pos.push_back(ele);
-    }
-    int pos_index = pos.size();
-    int neg_index = neg.size();
+  for (int ele : arr) {
+    if (ele < 0)
+      neg.push_back(ele);
+    else
+      pos.push_back(ele);
+  }
+  int pos_index = pos.size();
+  int neg_index = neg.size();
 
-    if(pos_index < neg_index){
-        for(int i = 0; i < pos_index; i++){
-            arr[2*i] = pos[i];
-            arr[2*i+1] = neg[i];
-        }
-
-        int index = pos_index * 2;
-        for(int i = pos_index; i < neg_index; i++){
-            arr[index] = neg[i];
-            index++;
-        }
-    } else {
-        for(int i = 0; i < neg_index; i++){
-            arr[2*i] = pos[i];
-            arr[2*i+1] = neg[i];
-        }
-
-        int index = neg_index * 2;
-        for(int i = neg_index; i < pos_index; i++){
-            arr[index] = pos[i];
-            index++;
-        }
+  if (pos_index < neg_index) {
+    for (int i = 0; i < pos_index; i++) {
+      arr[2 * i] = pos[i];
+      arr[2 * i + 1] = neg[i];
     }
 
-    return arr;
+    int index = pos_index * 2;
+    for (int i = pos_index; i < neg_index; i++) {
+      arr[index] = neg[i];
+      index++;
+    }
+  } else {
+    for (int i = 0; i < neg_index; i++) {
+      arr[2 * i] = pos[i];
+      arr[2 * i + 1] = neg[i];
+    }
+
+    int index = neg_index * 2;
+    for (int i = neg_index; i < pos_index; i++) {
+      arr[index] = pos[i];
+      index++;
+    }
+  }
+
+  return arr;
 }
 
 /*
  * 7. Find the next lexicographically greater permutation
  */
-vector<int> solve7(vector<int> &arr){
-    int len = arr.size();
+vector<int> solve7(vector<int> &arr) {
+  int len = arr.size();
 
-    int idx = -1;                           // index of the Pivot
-                  
-                  
-    for(int i = len - 2; i >= 0; i--){     // find the Pivot
-        if(arr[i] > arr[i + 1]){
-            idx = i;
-            break;
-        }
+  int idx = -1; // index of the Pivot
+
+  for (int i = len - 2; i >= 0; i--) { // find the Pivot
+    if (arr[i] > arr[i + 1]) {
+      idx = i;
+      break;
     }
+  }
 
-    if(idx == -1){
-        reverse(arr.begin(), arr.end());    // if no Pivot found, reverse the array (largest permutation)
-        return arr;
-    }
-
-    for(int i = len - 1; i > idx; i--){    // swap pivot with the next greatest element.
-        if(arr[i] > arr[idx]){
-            swap(arr[i], arr[idx]);
-            break;
-        }
-    }
-
-    reverse(arr.begin(), arr.end());
-
+  if (idx == -1) {
+    reverse(arr.begin(), arr.end()); // if no Pivot found, reverse the array
+                                     // (largest permutation)
     return arr;
+  }
+
+  for (int i = len - 1; i > idx;
+       i--) { // swap pivot with the next greatest element.
+    if (arr[i] > arr[idx]) {
+      swap(arr[i], arr[idx]);
+      break;
+    }
+  }
+
+  reverse(arr.begin(), arr.end());
+
+  return arr;
 }
 
 /*
  * 8. Print all the " Leader " Elements
  *
- * Leader: element greater than all the 
+ * Leader: element greater than all the
  */
 
-vector<int> solve8(vector<int> arr){
-    vector<int> ans;
+vector<int> solve8(vector<int> arr) {
+  vector<int> ans;
 
-    int len = arr.size();
-    ans.push_back(arr[len - 1]);
-    for(int i = len - 2; i > 0; i--){
-        if(ans.back() < arr[i]){
-            ans.push_back(arr[i]);
-        }
+  int len = arr.size();
+  ans.push_back(arr[len - 1]);
+  for (int i = len - 2; i > 0; i--) {
+    if (ans.back() < arr[i]) {
+      ans.push_back(arr[i]);
     }
-    return ans;
+  }
+  return ans;
 }
 
 /*
- * 9. Find the length of the longest sequence which contains the consecutive elements.
+ * 9. Find the length of the longest sequence which contains the consecutive
+ * elements.
  */
-int solve9(vector<int> arr){
-    sort(arr.begin(), arr.end());
-    int last_smaller = INT_MIN;
-    int cnt = 0;
-    int ans = 1;
+int solve9(vector<int> arr) {
+  sort(arr.begin(), arr.end());
+  int last_smaller = INT_MIN;
+  int cnt = 0;
+  int ans = 1;
 
-    for(int ele: arr){
-        if(ele - 1 == last_smaller){
-            cnt++;
-            last_smaller = ele;
-        } else if(ele != last_smaller){
-            last_smaller = ele;
-            cnt = 1;
-        }
-        ans = max(ans, cnt);
+  for (int ele : arr) {
+    if (ele - 1 == last_smaller) {
+      cnt++;
+      last_smaller = ele;
+    } else if (ele != last_smaller) {
+      last_smaller = ele;
+      cnt = 1;
     }
-    return ans;
-
+    ans = max(ans, cnt);
+  }
+  return ans;
 }
 
-int solve9b(vector<int> arr){
-    // using hashing
+int solve9b(vector<int> arr) {
+  // using hashing
 
-    unordered_set<int> st;
+  unordered_set<int> st;
 
-    for(int ele: arr) st.insert(ele);
+  for (int ele : arr)
+    st.insert(ele);
 
-    int ans = 1;
-    for(int ele: arr){                      // ele - 1 is the previous consecutive element
-        if(st.find(ele - 1) == st.end()){   // ele - 1 doesn't exist in set then it might be 
-            int cnt = 1;                    // the first consecutive element
-            int x = ele;
-            while(st.find(x + 1) != st.end()){
-                x++;
-                cnt++;
-            }
-            ans = max(ans, cnt);
-        }
+  int ans = 1;
+  for (int ele : arr) { // ele - 1 is the previous consecutive element
+    if (st.find(ele - 1) ==
+        st.end()) { // ele - 1 doesn't exist in set then it might be
+      int cnt = 1;  // the first consecutive element
+      int x = ele;
+      while (st.find(x + 1) != st.end()) {
+        x++;
+        cnt++;
+      }
+      ans = max(ans, cnt);
     }
-    return ans;
+  }
+  return ans;
+}
+
+/*
+ * 10. Set the row and column of corresponding element as 0 if element is 0.
+ */
+void solve10(vector<vector<int>> &arr) {
+  int n = arr.size();
+  int m = arr[0].size();
+  int row[n], col[m];
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (arr[i][j] == 0) {
+        row[i] = 1;
+        col[j] = 1;
+      }
+    }
+  }
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (row[i] == 1 || col[j] == 1) {
+        arr[i][j] = 0;
+      }
+    }
+  }
+}
+
+void solve10b(vector<vector<int>> &matrix) {
+
+  int col0 = 1;
+  int n = matrix.size();
+  int m = matrix[0].size();
+
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (matrix[i][j] == 0) {
+        matrix[i][0] = 0;
+
+        if (j != 0) {
+          matrix[0][j] = 0;
+        } else {
+          col0 = 0;
+        }
+      }
+    }
+  }
+
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (matrix[i][j] != 0) {
+        if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+          matrix[i][j] = 0;
+        }
+      }
+    }
+  }
+
+  if (matrix[0][0] == 0) {
+    for (int j = 0; j < m; j++) {
+      matrix[0][j] = 0;
+    }
+  }
+  if (col0 == 0) {
+    for (int i = 0; i < n; i++) {
+      matrix[i][0] = 0;
+    }
+  }
+}
+
+/*
+ * 11. Rotate Matrix by 90 degrees
+ */
+void solve11(vector<vector<int>> &matrix) {
+  int n = matrix.size();
+
+  // Transposing the matrix
+  for (int i = 0; i < n; i++) {
+    for (int j = i; j < n; j++) {
+      swap(matrix[i][j], matrix[j][i]);
+    }
+  }
+
+  for (int i = 0; i < n; i++) {
+    reverse(matrix[i].begin(), matrix[i].end());
+  }
+}
+
+/*
+ * 12: Print the Matrix in Spiral Form
+ */
+vector<int> solve12(vector<vector<int>> matrix) {
+  vector<int> ans;
+
+  int n = matrix.size();
+  int m = matrix[0].size();
+
+  int top = 0, left = 0, right = n - 1, bottom = m - 1;
+
+  while (top <= bottom && left <= right) {
+    for (int i = left; i <= right; i++) {
+      ans.push_back(matrix[top][i]);
+    }
+    top++;
+
+    for (int i = top; i <= bottom; i++) {
+      ans.push_back(matrix[i][right]);
+    }
+    right--;
+
+    if (left <= right) {
+      for (int i = right; i >= left; i--) {
+        ans.push_back(matrix[bottom][i]);
+      }
+      left++;
+    }
+
+    if (top <= bottom) {
+      for (int i = bottom; i >= top; i--) {
+        ans.push_back(matrix[i][left]);
+      }
+      left++;
+    }
+  }
+  return ans;
+}
+
+/*
+ * 13. Find total number of subarrays whose sum is K.
+ */
+int solve13(vector<int> &arr, int k) {
+  int len = arr.size();
+  int cnt = 0;
+
+  for (int i = 0; i < len; i++) {
+    int sum = 0;
+    for (int j = i; j < len; j++) {
+
+      sum += arr[j];
+
+      if (sum == k) {
+        cnt++;
+      }
+    }
+  }
+
+  return cnt;
+}
+
+int solve13b(vector<int> &arr, int target) {
+  int len = arr.size();
+  map<int, int> mp;
+  int pref_sum = 0, cnt = 0;
+
+  mp[0] = 1; // setting zero cause there might a element with value as 'target'
+  for (int i = 0; i < len; i++) {
+    pref_sum += arr[i]; 
+
+    int other_pref_sum = pref_sum - target; // pref_sum of other subarray which is curr_pref_sum - target
+
+    cnt += mp[other_pref_sum];  // add the count of subarrays which has pref_sum as 'remove'
+
+    mp[pref_sum]++;  // update map with curr_pref_sum
+  }
+
+  return cnt;
 }
 
 int main() {
-    vector<int> arr = {100, 200, 1, 2, 3, 4};
-    cout << solve9b(arr); 
+    vector<int> arr = {3, 1, 2, 4};
+    cout << solve13b(arr, 6);
 }
