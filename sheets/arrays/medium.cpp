@@ -261,9 +261,9 @@ vector<int> solve6b(vector<int> &arr) {
 vector<int> solve7(vector<int> &arr) {
   int len = arr.size();
 
-  int idx = -1; // index of the Pivot
+  int idx = -1;                             // index of the Pivot
 
-  for (int i = len - 2; i >= 0; i--) { // find the Pivot
+  for (int i = len - 2; i >= 0; i--) {      // find the Pivot
     if (arr[i] > arr[i + 1]) {
       idx = i;
       break;
@@ -271,8 +271,8 @@ vector<int> solve7(vector<int> &arr) {
   }
 
   if (idx == -1) {
-    reverse(arr.begin(), arr.end()); // if no Pivot found, reverse the array
-                                     // (largest permutation)
+    reverse(arr.begin(), arr.end());       // if no Pivot found, reverse the array
+                                           // (largest permutation)
     return arr;
   }
 
@@ -340,10 +340,9 @@ int solve9b(vector<int> arr) {
     st.insert(ele);
 
   int ans = 1;
-  for (int ele : arr) { // ele - 1 is the previous consecutive element
-    if (st.find(ele - 1) ==
-        st.end()) { // ele - 1 doesn't exist in set then it might be
-      int cnt = 1;  // the first consecutive element
+  for (int ele : arr) {                        // ele - 1 is the previous consecutive element
+    if (st.find(ele - 1) == st.end()) {        // ele - 1 doesn't exist in set then it might be
+      int cnt = 1;                             // the first consecutive element
       int x = ele;
       while (st.find(x + 1) != st.end()) {
         x++;
@@ -505,21 +504,19 @@ int solve13b(vector<int> &arr, int target) {
   map<int, int> mp;
   int pref_sum = 0, cnt = 0;
 
-  mp[0] = 1; // setting zero cause there might a element with value as 'target'
+  mp[0] = 1;                                   // setting zero cause there might a element with value as 'target'
   for (int i = 0; i < len; i++) {
     pref_sum += arr[i]; 
 
-    int other_pref_sum = pref_sum - target; // pref_sum of other subarray which is curr_pref_sum - target
+    int other_pref_sum = pref_sum - target;    // pref_sum of other subarray which is curr_pref_sum - target
 
-    cnt += mp[other_pref_sum];  // add the count of subarrays which has pref_sum as 'remove'
+    cnt += mp[other_pref_sum];                 // add the count of subarrays which has pref_sum as 'remove'
 
-    mp[pref_sum]++;  // update map with curr_pref_sum
+    mp[pref_sum]++;                            // update map with curr_pref_sum
   }
 
   return cnt;
 }
 
 int main() {
-    vector<int> arr = {3, 1, 2, 4};
-    cout << solve13b(arr, 6);
 }
